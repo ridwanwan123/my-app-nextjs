@@ -1,9 +1,10 @@
 import React from "react";
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
     <div>
-      <div className="navbar"> Ini Navbar</div>
+      <div className={styles.navbar}> Ini Navbar</div>
     </div>
   );
 };
