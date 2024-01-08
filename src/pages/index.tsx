@@ -1,28 +1,39 @@
 import { useState, useEffect } from 'react';
 
 type UserData = {
-  name: string;
-  age: number;
+  username: string;
+  // password: string;
+  email: string;
 };
 
 export default function Home() {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<UserData[]>([]);
 
   useEffect(() => {
     // Lakukan fetching data dari API
-    fetch('/api/hello') // Ganti dengan path sesuai dengan struktur folder proyekmu
+    fetch(`https://fakestoreapi.com/users/1`)
       .then(response => response.json())
-      .then(data => setUserData(data))
+      .then(data => setUserData([data]))
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
   return (
     <div>
-      {userData ? (
-        <h1>Hallo, {userData.name}, Umur kamu adalah {userData.age}</h1>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <ul>
+        {userData && userData.map((user: UserData) => (
+          <li key={user.username}>
+            <div>
+              <strong>Username:</strong> {user.username}
+            </div>
+            <div>
+              {/* <strong>Password:</strong> {user.password} */}
+            </div>
+            <div>
+              <strong>Email:</strong> {user.email}
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
