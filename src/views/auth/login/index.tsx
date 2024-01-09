@@ -5,14 +5,14 @@ import loginCSS from './Login.module.scss'
 
 const LoginViews = () => {
   const { push } = useRouter()
-  const handleLogin = () => {
-    push('/product');
-  }
+  // const handleLogin = () => {
+  //   push('/product');
+  // }
 
   return (
     <div className={loginCSS.login}>
       <h1 className="text-3xl uppercase">Login Page</h1>
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={() => push('/product')}>Login</button>
       Belum punya akun ? <Link href="/auth/register"> Registrasi</Link>
     </div>
   )
